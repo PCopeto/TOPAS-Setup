@@ -1,0 +1,91 @@
+s:Ge/World/Material = "Air"
+
+s:Ge/Scintillator1/Type     = "TsBox"
+s:Ge/Scintillator1/Material = "G4_PLASTIC_SC_VINYLTOLUENE"
+s:Ge/Scintillator1/Parent   = "World"
+d:Ge/Scintillator1/HLX      = 0.0026 m
+d:Ge/Scintillator1/HLY      = 0.05 m
+d:Ge/Scintillator1/HLZ      = 0.1265 m
+d:Ge/Scintillator1/TransX   = 1. m
+d:Ge/Scintillator1/TransY   = 0. m
+d:Ge/Scintillator1/TransZ   = 0. m
+d:Ge/Scintillator1/RotX     = 0. deg
+d:Ge/Scintillator1/RotY     = 0. deg
+d:Ge/Scintillator1/RotZ     = 0. deg
+d:Ge/Scintillator1/MaxStepSize = 0.05 mm
+
+s:Ge/Scintillator2/Type     = "TsBox"
+s:Ge/Scintillator2/Material = "G4_PLASTIC_SC_VINYLTOLUENE"
+s:Ge/Scintillator2/Parent   = "World"
+d:Ge/Scintillator2/HLX      = 0.0026 m
+d:Ge/Scintillator2/HLY      = 0.05 m
+d:Ge/Scintillator2/HLZ      = 0.1265 m
+d:Ge/Scintillator2/TransX   = 1.5 m
+d:Ge/Scintillator2/TransY   = 0. m
+d:Ge/Scintillator2/TransZ   = 0. m
+d:Ge/Scintillator2/RotX     = 0. deg
+d:Ge/Scintillator2/RotY     = 0. deg
+d:Ge/Scintillator2/RotZ     = 0. deg
+d:Ge/Scintillator2/MaxStepSize = 0.05 mm
+
+sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
+
+s:Gr/ViewA/Type = "OpenGL"
+Ts/UseQt = "T"
+b:Gr/ViewA/IncludeAxes = "True"
+
+b:Ts/PauseBeforeQuit = "True"
+
+##EJ-200##
+b:Ma/EJ200/BuildFromMaterials = "True"
+sv:Ma/EJ200/Components = 1 "G4_PLASTIC_SC_VINYLTOLUENE"
+uv:Ma/EJ200/Fractions = 1 1.0
+d:Ma/EJ200/Density = 1.032 g/cm3
+
+b:Ma/EJ200/EnableOpticalProperties = "True"
+dv:Ma/EJ200/RefractiveIndex/Energies = 3 1.0 2.5 3.0 eV
+uv:Ma/EJ200/RefractiveIndex/Values = 3 1.58 1.58 1.58
+dv:Ma/EJ200/AbsLength/Energies = 3 1.0 2.5 3.0 eV
+dv:Ma/EJ200/AbsLength/Values = 3 160. 160. 160. cm
+
+u:Ma/EJ200/ScintillationYield = 10000.0 #in ph/MeV
+u:Ma/EJ200/ResolutionScale = 1.0
+d:Ma/EJ200/FastTimeConstant = 0.9 ns
+d:Ma/EJ200/SlowTimeConstant = 2.1 ns
+u:Ma/EJ200/YieldRatio = 1.0
+
+# Muon Source
+
+# Beam component
+s:Ge/XRayTube/Parent = "World"
+s:Ge/XRayTube/Type   = "Group"
+d:Ge/XRayTube/TransX = 200. cm
+d:Ge/XRayTube/TransY = 0. m
+d:Ge/XRayTube/TransZ = 0. m
+d:Ge/XRayTube/RotX   = 0. deg
+d:Ge/XRayTube/RotY   = 90. deg
+d:Ge/XRayTube/RotZ   = 90. deg
+
+
+# Beam source
+s:So/Imaging/Type                     = "Beam"
+s:So/Imaging/Component                = "XRayTube"
+s:So/Imaging/BeamParticle             = "13"
+d:So/Imaging/BeamEnergy               = 5. GeV
+u:So/Imaging/BeamEnergySpread         = 90.        #4.5 GeV / 5 GeV * 100
+s:So/Imaging/BeamPositionCutoffShape  = "Ellipse"
+s:So/Imaging/BeamPositionDistribution = "Flat"
+d:So/Imaging/BeamPositionCutoffX      = 5. cm
+d:So/Imaging/BeamPositionCutoffY      = 10. cm
+s:So/Imaging/BeamAngularDistribution = "Gaussian" # None, Flat or Gaussian
+d:So/Imaging/BeamAngularCutoffX = 90. deg
+d:So/Imaging/BeamAngularCutoffY = 90. deg
+d:So/Imaging/BeamAngularSpreadX = 0.1 rad
+d:So/Imaging/BeamAngularSpreadY = 0.1 rad
+ic:So/Imaging/NumberOfHistoriesInRun   = 10
+
+s:Gr/View/ColorBy = "ParticleType"
+b:Gr/View/UseSmoothTrajectories = "False"
+#Color per chemical specie. Use full name of the molecules
+sv:Gr/View/ColorByParticleTypeNames = 6 "e-" "proton" "alpha" "mu-" "deuteron" "triton"
+sv:Gr/View/ColorByParticleTypeColors = 6 "red" "blue" "green" "white" "yellow" "menta"
